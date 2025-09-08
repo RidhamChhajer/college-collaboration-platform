@@ -3,13 +3,16 @@ require('dotenv').config();
 
 let connection;
 
-const connection = mysql.createConnection({
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
-  port: process.env.MYSQLPORT
-});
+const config = {
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'password',
+  database: process.env.DB_NAME || 'college_collab_platform',
+  port: process.env.DB_PORT || 3306,
+  acquireTimeout: 60000,
+  timeout: 60000,
+  reconnect: true
+};
 
 console.log("🔌 Database Configuration:", {
   host: config.host,
