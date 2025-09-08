@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Profile Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-amber-50 to-orange-100 min-h-screen flex items-center justify-center p-6">
+  <div class="bg-white/90 backdrop-blur-sm shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-amber-800">🎓 Student Profile Submission</h2>
+      <button onclick="goBackToDashboard()" 
+              class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">
+        ← Back to Dashboard
+      </button>
+    </div>
+    
+    <!-- Success/Error Messages -->
+    <div id="success-msg" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+      ✅ Form submitted successfully!
+    </div>
+    <div id="error-msg" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"></div>
+    
+    <form id="studentForm" class="space-y-4">
+      
+      <!-- Name -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+        <input type="text" name="name" placeholder="Enter your full name"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition">
+        <p id="name-error" class="error-msg text-red-500 text-sm mt-1"></p>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">College Email *</label>
+        <input type="email" name="email" placeholder="Enter your college email (@vit.edu)"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition">
+        <p id="email-error" class="error-msg text-red-500 text-sm mt-1"></p>
+      </div>
+
+      <!-- Roll number -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Roll Number *</label>
+        <input type="number" name="roll_number" placeholder="Enter roll number (1-90)" min="1" max="90"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition">
+        <p id="roll-error" class="error-msg text-red-500 text-sm mt-1"></p>
+      </div>
+
+      <!-- Branch & Year -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Branch</label>
+          <select name="branch" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition">
+            <option value="">Select Branch</option>
+            <option value="CSE">Computer Science & Engineering</option>
+            <option value="AIML">AI & Machine Learning</option>
+            <option value="ENTC">Electronics & Telecommunications</option>
+            <option value="MECH">Mechanical Engineering</option>
+            <option value="CIVIL">Civil Engineering</option>
+            <option value="EEE">Electrical & Electronics</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Year</label>
+          <select name="year" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition">
+            <option value="">Select Year</option>
+            <option value="First Year">First Year</option>
+            <option value="Second Year">Second Year</option>
+            <option value="Third Year">Third Year</option>
+            <option value="Final Year">Final Year</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Class -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Class/Division</label>
+        <input type="text" name="class" placeholder="Enter your class/division (e.g., A1, B2)"
+          class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition">
+      </div>
+
+      <!-- Skills -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Skills (Select all that apply)</label>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="skills" value="Web Development" class="accent-amber-600">
+            <span class="text-sm">Web Development</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="skills" value="App Development" class="accent-amber-600">
+            <span class="text-sm">App Development</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="skills" value="UI/UX Design" class="accent-amber-600">
+            <span class="text-sm">UI/UX Design</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="skills" value="Data Science" class="accent-amber-600">
+            <span class="text-sm">Data Science</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="skills" value="Finance" class="accent-amber-600">
+            <span class="text-sm">Finance</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="skills" value="Public Speaking" class="accent-amber-600">
+            <span class="text-sm">Public Speaking</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="skills" value="Digital Marketing" class="accent-amber-600">
+            <span class="text-sm">Digital Marketing</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="skills" value="Other" class="accent-amber-600" onchange="toggleOtherSkill(this)">
+            <span class="text-sm">Other</span>
+          </label>
+        </div>
+        <!-- Other Skills Input -->
+        <div id="otherSkillDiv" class="hidden mt-2">
+          <input type="text" id="otherSkillInput" placeholder="Please specify other skill..."
+                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none">
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Interests (Select all that apply)</label>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="interests" value="Singing" class="accent-amber-600">
+            <span class="text-sm">Singing</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="interests" value="Dancing" class="accent-amber-600">
+            <span class="text-sm">Dancing</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="interests" value="Reading" class="accent-amber-600">
+            <span class="text-sm">Reading</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="interests" value="Stock Market" class="accent-amber-600">
+            <span class="text-sm">Stock Market</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="interests" value="Content Creation" class="accent-amber-600">
+            <span class="text-sm">Content Creation</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="interests" value="Photography" class="accent-amber-600">
+            <span class="text-sm">Photography</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="interests" value="Sports" class="accent-amber-600">
+            <span class="text-sm">Sports</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer hover:bg-amber-50 p-2 rounded">
+            <input type="checkbox" name="interests" value="Other" class="accent-amber-600" onchange="toggleOtherInterest(this)">
+            <span class="text-sm">Other</span>
+          </label>
+        </div>
+        <!-- Other Interests Input -->
+        <div id="otherInterestDiv" class="hidden mt-2">
+          <input type="text" id="otherInterestInput" placeholder="Please specify other interest..."
+                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none">
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex items-center gap-4 pt-4">
+        <button type="submit" id="submitBtn" 
+          class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg shadow-md transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+          <span id="submitText">Submit Profile</span>
+          <span id="loadingText" class="hidden">Submitting...</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Authentication check - MUST be at the top
+    function checkAuthentication() {
+      const token = sessionStorage.getItem('token');
+      if (!token) {
+        alert('Please login first to submit your profile.');
+        window.location.href = '/login.html';
+        return false;
+      }
+      return true;
+    }
+
+    // Check authentication when page loads
+    if (!checkAuthentication()) {
+      throw new Error('Not authenticated');
+    }
+
+    const form = document.getElementById('studentForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitText = document.getElementById('submitText');
+    const loadingText = document.getElementById('loadingText');
+    const successMsg = document.getElementById('success-msg');
+    const errorMsg = document.getElementById('error-msg');
+
+    // Form submission
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      
+      hideMessages();
+      clearErrors();
+      
+      const formData = new FormData(form);
+      
+      // Get skills and handle "Other" option
+      let skills = formData.getAll('skills');
+      const otherSkillInput = document.getElementById('otherSkillInput');
+      if (skills.includes('Other') && otherSkillInput.value.trim()) {
+        skills = skills.filter(skill => skill !== 'Other');
+        skills.push(otherSkillInput.value.trim());
+      } else if (skills.includes('Other')) {
+        skills = skills.filter(skill => skill !== 'Other');
+      }
+      
+      // Get interests and handle "Other" option
+      let interests = formData.getAll('interests');
+      const otherInterestInput = document.getElementById('otherInterestInput');
+      if (interests.includes('Other') && otherInterestInput.value.trim()) {
+        interests = interests.filter(interest => interest !== 'Other');
+        interests.push(otherInterestInput.value.trim());
+      } else if (interests.includes('Other')) {
+        interests = interests.filter(interest => interest !== 'Other');
+      }
+      
+      const data = {
+        name: formData.get('name')?.trim(),
+        email: formData.get('email')?.trim().toLowerCase(),
+        roll_number: formData.get('roll_number'),
+        branch: formData.get('branch'),
+        year: formData.get('year'),
+        class: formData.get('class')?.trim(),
+        skills: skills,
+        interests: interests
+      };
+      
+      // Validation
+      let isValid = true;
+      
+      if (!data.name) {
+        showError('name-error', 'Name is required');
+        isValid = false;
+      }
+      
+      if (!data.email) {
+        showError('email-error', 'Email is required');
+        isValid = false;
+      } else if (!data.email.endsWith('@vit.edu')) {
+        showError('email-error', 'Email must end with @vit.edu');
+        isValid = false;
+      }
+      
+      const rollNum = parseInt(data.roll_number);
+      if (!data.roll_number || isNaN(rollNum) || rollNum < 1 || rollNum > 90) {
+        showError('roll-error', 'Roll number must be between 1 and 90');
+        isValid = false;
+      }
+      
+      if (!isValid) return;
+      
+      // Submit form
+      try {
+        setLoading(true);
+        
+        // Get token from sessionStorage
+        const token = sessionStorage.getItem('token');
+        const headers = {
+          'Content-Type': 'application/json',
+        };
+        
+        if (token) {
+          headers['Authorization'] = `Bearer ${token}`;
+        }
+        
+        const response = await fetch('/api/users', {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          showSuccess('Profile submitted successfully! 🎉 Redirecting to dashboard...');
+          form.reset();
+          
+          // Clear "Other" inputs and hide divs
+          document.getElementById('otherSkillInput').value = '';
+          document.getElementById('otherInterestInput').value = '';
+          document.getElementById('otherSkillDiv').classList.add('hidden');
+          document.getElementById('otherInterestDiv').classList.add('hidden');
+          
+          // Redirect to dashboard after 2 seconds
+          setTimeout(() => {
+            window.location.href = '/dashboard.html';
+          }, 2000);
+        } else {
+          showError('error-msg', result.error || 'Something went wrong!');
+        }
+      } catch (error) {
+        console.error('Submission error:', error);
+        showError('error-msg', 'Network error. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    // Helper functions
+    function setLoading(loading) {
+      submitBtn.disabled = loading;
+      submitText.classList.toggle('hidden', loading);
+      loadingText.classList.toggle('hidden', !loading);
+    }
+
+    function showSuccess(message) {
+      successMsg.textContent = message;
+      successMsg.classList.remove('hidden');
+      errorMsg.classList.add('hidden');
+    }
+
+    function showError(elementId, message) {
+      if (elementId === 'error-msg') {
+        errorMsg.textContent = message;
+        errorMsg.classList.remove('hidden');
+        successMsg.classList.add('hidden');
+      } else {
+        document.getElementById(elementId).textContent = message;
+      }
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.error-msg').forEach(el => el.textContent = '');
+    }
+
+    function hideMessages() {
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+    }
+
+    // Navigation functions
+    function goBackToDashboard() {
+      window.location.href = '/dashboard.html';
+    }
+
+    // Toggle "Other" input for skills
+    function toggleOtherSkill(checkbox) {
+      const otherDiv = document.getElementById('otherSkillDiv');
+      const otherInput = document.getElementById('otherSkillInput');
+      
+      if (checkbox.checked) {
+        otherDiv.classList.remove('hidden');
+        otherInput.focus();
+      } else {
+        otherDiv.classList.add('hidden');
+        otherInput.value = '';
+      }
+    }
+
+    // Toggle "Other" input for interests
+    function toggleOtherInterest(checkbox) {
+      const otherDiv = document.getElementById('otherInterestDiv');
+      const otherInput = document.getElementById('otherInterestInput');
+      
+      if (checkbox.checked) {
+        otherDiv.classList.remove('hidden');
+        otherInput.focus();
+      } else {
+        otherDiv.classList.add('hidden');
+        otherInput.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
